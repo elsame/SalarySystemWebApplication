@@ -72,6 +72,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -111,19 +117,48 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\SalarySystemWebApplication20190311020101 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CompanySettingsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeePaymentController.cs" />
+    <Compile Include="Controllers\EmployeeSettingsController.cs" />
+    <Compile Include="Controllers\PaymentOverviewController.cs" />
+    <Compile Include="Controllers\PensionsController.cs" />
+    <Compile Include="Controllers\PensionsInfoController.cs" />
+    <Compile Include="Controllers\RSKController.cs" />
+    <Compile Include="Controllers\TaxInformationController.cs" />
+    <Compile Include="Controllers\UnionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\payCheck.cs" />
+    <Compile Include="Models\companyModel.cs" />
+    <Compile Include="Models\defaultModel.cs" />
+    <Compile Include="Models\employeeFeesModels.cs" />
+    <Compile Include="Models\employeeModel.cs" />
+    <Compile Include="Models\employeeSettingsModel.cs" />
+    <Compile Include="Models\groupModel.cs" />
+    <Compile Include="Models\jobCatagoryModel.cs" />
+    <Compile Include="Models\launalidurModel.cs" />
+    <Compile Include="Models\payCheckModel.cs" />
+    <Compile Include="Models\pensionFundModel.cs" />
+    <Compile Include="Models\personalDiscountModel.cs" />
+    <Compile Include="Models\settings.cs" />
+    <Compile Include="Models\taxItems.cs" />
+    <Compile Include="Models\taxModel.cs" />
+    <Compile Include="Models\taxOfficeModel.cs" />
+    <Compile Include="Models\unionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,10 +167,41 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Default\Details.cshtml" />
+    <Content Include="Views\Shared\HeaderNavBar.cshtml" />
+    <Content Include="Views\Default\fyrirtaeki.cshtml" />
+    <Content Include="Views\employee\Index.cshtml" />
+    <Content Include="Views\EmployeeSettings\Index.cshtml" />
+    <Content Include="Views\EmployeePayment\Index.cshtml" />
+    <Content Include="Views\RSK\Index.cshtml" />
+    <Content Include="Views\Pensions\Index.cshtml" />
+    <Content Include="Views\CompanySettings\Index.cshtml" />
+    <Content Include="Views\PaymentOverview\Index.cshtml" />
+    <Content Include="Views\Unions\Index.cshtml" />
+    <Content Include="Views\TaxInformation\Index.cshtml" />
+    <Content Include="Views\PensionsInfo\Index.cshtml" />
+    <Content Include="Views\Unions\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PersonalId.cshtml" />
+    <Content Include="Views\PensionsInfo\Edit.cshtml" />
+    <Content Include="Views\TaxInformation\TaxItem.cshtml" />
+    <Content Include="Views\TaxInformation\Edit.cshtml" />
+    <Content Include="Views\TaxInformation\TaxItemEdit.cshtml" />
+    <Content Include="Views\CompanySettings\salaryCategory.cshtml" />
+    <Content Include="Views\CompanySettings\salaryGroup.cshtml" />
+    <Content Include="Views\CompanySettings\salaryItem.cshtml" />
+    <Content Include="Views\CompanySettings\deductionItem.cshtml" />
+    <Content Include="Views\CompanySettings\EditSalaryCategory.cshtml" />
+    <Content Include="Views\CompanySettings\EditSalaryGroup.cshtml" />
+    <Content Include="Views\CompanySettings\EditSalaryItem.cshtml" />
+    <Content Include="Views\CompanySettings\EditDeductionItem.cshtml" />
+    <Content Include="Views\employee\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BankAccount.cshtml" />
+    <Content Include="Views\EmployeeSettings\EmployeeFees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

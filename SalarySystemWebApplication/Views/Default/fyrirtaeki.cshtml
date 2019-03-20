@@ -1,0 +1,51 @@
+﻿
+@model SalarySystemWebApplication.Models.companyModel
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "payCheckView";
+}
+
+<h3>Launaseðill</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">Launagreiðandi</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>@Html.DisplayFor(model => model.name)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>@Html.DisplayFor(model => model.postalCode)</label>
+                    <label>@Html.DisplayFor(model => model.city)</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Rafrænn launaseðill</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <input id="Button1" type="button" value="Endurhlaða stillingar" class="btn btn-xs ol-xs-12 button-wrapper" />
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>@Html.DisplayFor(model => model.home)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>@Html.DisplayFor(model => model.phoneNumber)</label>
+                </div>
+                <div class="col-sm-3">
+                    <input id="Button3" type="button" value="Prenta" class="btn btn-xs ol-xs-12 button-wrapper" />
+                </div>
+                <div class="col-sm-3">
+                    <input id="Button2" type="button" value="Vista" class="btn btn-xs ol-xs-12 button-wrapper" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

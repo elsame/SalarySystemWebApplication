@@ -1,0 +1,161 @@
+﻿@model SalarySystemWebApplication.Models.employeeSettingsModel
+
+<h3>Stillingar launþega</h3>
+<hr />
+<ul class="nav nav-tabs">
+    <li class="active">@Html.ActionLink("Launþegi", "Index", "EmployeeSettings")</li>
+    <li>@Html.ActionLink("Gjöld launþega", "EmployeeFees", "EmployeeSettings")</li>
+</ul>
+<p></p>
+<div class="row row-m-t">
+    <div class="col-sm-4">
+        <label for="employeeList">Launþegi</label>
+        @{Html.BeginForm("Index", "EmployeeSettings", FormMethod.Get); }
+        @Html.DropDownListFor(model => Model.employeeModelId, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+        @{Html.EndForm(); }
+
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.employeeModelId)
+
+    <div class="row row-m-t">
+        <div class="col-sm-4">
+            <label for="worktimeFrom">Upphaf starfs</label>
+            @Html.EditorFor(model => model.worktimeFrom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.worktimeFrom, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-4">
+            <label for="worktimeTo">Starfslok</label>
+            @Html.EditorFor(model => model.worktimeTo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.worktimeTo, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-4">
+            <label for="personalDiscountFrom">Persónuafsláttur frá</label>
+            @Html.EditorFor(model => model.personalDiscountFrom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.personalDiscountFrom, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <div class="col-sm-2">
+                <label for="jobPercentage">Starfshlutfall</label>
+                @Html.EditorFor(model => model.jobPercentage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jobPercentage, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-1">
+                <br />
+                @Html.EditorFor(model => model.idStatus)
+                @Html.ValidationMessageFor(model => model.idStatus, "", new { @class = "text-danger" })
+                <label for="status">Virkur</label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-m-t">
+            <div class="col-sm-4">
+                <label>Persónuafsláttur</label>
+                @Html.EditorFor(model => model.amountPercent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.amountPercent, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <label>Persónuafsláttur maka</label>
+                @Html.EditorFor(model => model.amountSpousePercent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.amountSpousePercent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div>
+                <div class="col-sm-2">
+                    <label>Föst laun</label>
+                    @Html.EditorFor(model => model.fixedSalary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fixedSalary, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-2">
+                    <br />
+                    @Html.EditorFor(model => model.remuneration)
+                    @Html.ValidationMessageFor(model => model.remuneration, "", new { @class = "text-danger" })
+                    <label for="employeeSettings.remuneration">Endurgjald</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label for="employeeSettings.otherWages">Önnur laun</label>
+                @Html.EditorFor(model => model.otherWages, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.otherWages, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div class="col-sm-4">
+                <label for="employeeSettings.hourly">Tímakaup</label>
+                @Html.EditorFor(model => model.hourly, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hourly, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <label for="employeeSettings.carBenefits">Ökutækjastyrkur</label>
+                @Html.EditorFor(model => model.carBenefits, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.carBenefits, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div class="col-sm-4">
+                <label for="employeeSettings.dailyallowance">Dagpeningar</label>
+                @Html.EditorFor(model => model.dailyallowance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dailyallowance, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <label for="employeeSettings.overtime">Yfirvinna</label>
+                @Html.EditorFor(model => model.overtime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.overtime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div class="col-sm-4">
+                <label for="employeeSettings.shiftWork">Vaktaálag</label>
+                @Html.EditorFor(model => model.shiftWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.shiftWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div class="col-sm-4">
+                <br />
+                @Html.EditorFor(model => model.calculateVehicleTax)
+                @Html.ValidationMessageFor(model => model.calculateVehicleTax, "", new { @class = "text-danger" })
+                <label for="employeeSettings.calculateVehicleTax">Reikna staðgreiðslu af ökutækjastyrk</label>
+            </div>
+            <div class="col-sm-4">
+                <br />
+                @Html.EditorFor(model => model.calculatePaymentOfDailyAllowance)
+                @Html.ValidationMessageFor(model => model.calculatePaymentOfDailyAllowance, "", new { @class = "text-danger" })
+                <label for="employeeSettings.calculatePaymentOfDailyAllowance">Reikna staðgreiðslu af ökutækjastyrk</label>
+            </div>
+        </div>
+        <div class="row row-m-t">
+            <div class="col-sm-4">
+                @Html.EditorFor(model => model.salaryOnAccount)
+                @Html.ValidationMessageFor(model => model.salaryOnAccount, "", new { @class = "text-danger" })
+                <label for="employeeSettings.salaryOnAccount">Laun lögð inn á bankareikning</label>
+            </div>
+            <div class="col-sm-4">
+                @Html.EditorFor(model => model.vacationOnAccount)
+                @Html.ValidationMessageFor(model => model.vacationOnAccount, "", new { @class = "text-danger" })
+                <label for="employeeSettings.vacationOnAccount">Orlof lag inn á bankareikning</label>
+            </div>
+            <div class="col-sm-4">
+                <br />
+                <input type="submit" value="Vista" class="btn btn-default" id="sub"
+                       @{ if (Model.employeeModelId == 0) { @: disabled="disabled"
+                       } } />
+            </div>
+        </div>
+        }
+

@@ -1,0 +1,34 @@
+﻿@model SalarySystemWebApplication.Models.groupModel
+<h3>Stillingar fyrirtækis</h3>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">Breyta launahóp</div>
+    <div class="panel-body">
+        <div class="container">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "taxOfficeform" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.AntiForgeryToken()
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        <label>Heiti hóps</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" value="Vista" class="btn btn-default" />
+                        <input type="button" value="Hreinsa" class="btn btn-default" onclick='taxOfficeform.reset();return false;' />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

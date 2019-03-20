@@ -1,48 +1,956 @@
-﻿@model SalarySystemWebApplication.Models.payCheck
-
+﻿@model SalarySystemWebApplication.Models.defaultModel
 @{
-    ViewBag.Title = "Index";
+    /**/
+
+    /**/
+
+    /**/
+
+    ViewBag.Title = "payCheckView";
 }
+<head>
+    <title>Getting Started with jQuery</title>
+    <script src="../scripts/jquery-1.11.1.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#overtime,#overtimetaxti").keyup(function (e) {
 
+                var q = $("#overtime").val();
+                var p = $("#overtimetaxti").val();
+                var result = "0";
 
-<h3>Launaseðill</h3>
-<div class="panel panel-default">
-    <div class="panel-heading">Launagreiðandi</div>
-    <div class="panel-body">
-        <div class="container">
-            <div class="row row-m-t">
-                <div class="col-sm-3">
-                    @Html.Label("FyrirtaekiNafn", "Gunnar Sigfússon ehf")
-                </div>
-                <div class="col-sm-3">
-                    @Html.Label("FyrirtaekiPostfang", "220 Hafnarfirði")
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Rafrænn launaseðill</label>
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#overtimePay").val(result);
+
+                calculate_summary();
+
+            });
+            $("#overtime").change(function (e) {
+
+                var q = $("#overtime").val();
+                var p = $("#overtimetaxti").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#overtimePay").val(result);
+
+                calculate_summary();
+
+            });
+            function calculate_summary() {
+                var summary = "0";
+                var overtimepaySummary = $("#overtimePay").val();
+                var fixedSalarySummary = $("#inputFixedSalarySummary").val();
+                var ShiftWorkSummary = $("#inputShiftWorkSummary").val();
+                var CarBenefitsSummary = $("#inputCarBenefitsSummary").val();
+                var DailyAllowanceSummary = $("#inputDailyAllowanceSummary").val();
+                var OtherPaymentsList1Summary = $("#inputOtherPaymentsList1Summary").val();
+                var OtherPaymentsList2Summary = $("#inputOtherPaymentsList2Summary").val();
+
+                summary = parseFloat(overtimepaySummary) + parseFloat(fixedSalarySummary) + parseFloat(ShiftWorkSummary) + parseFloat(CarBenefitsSummary)
+                    + parseFloat(DailyAllowanceSummary) + parseFloat(OtherPaymentsList1Summary) + parseFloat(OtherPaymentsList2Summary);
+                $("#inputSalaryAll").val(summary);
+                $("#inputSalarySummaryMonth").val(summary);
+
+                calculate_pension();
+            }
+            function calculate_pension() {
+                var Premium = $("#inputPremium").val();
+                var fixedSalary = $("#inputFixedSalarySummary").val();
+                var carBenefits = $("#inputCarBenefitsSummary").val();
+                var DailyAllowance = $("#inputDailyAllowanceSummary").val();
+
+                var result = "0";
+                var payNotRSK = parseFloat(fixedSalary);
+
+                if (carBenefits !== "" && $.isNumeric(carBenefits)) {
+                    payNotRSK = parseFloat(payNotRSK) - parseFloat(carBenefits);
+                }
+
+                if (DailyAllowance !== "" && $.isNumeric(DailyAllowance)) {
+                    payNotRSK = parseFloat(payNotRSK) - parseFloat(DailyAllowance);
+                }
+
+                result = parseFloat(Premium) * parseFloat(payNotRSK) * parseFloat(0.01);
+
+                $("#inputPensionPayment").val(result);
+                $("#inputPensionPaymentMonth").val(result);
+
+                calculate_privatepension();
+            }
+            function calculate_privatepension() {
+                var Premium = $("#inputprivateProperty").val();
+                var fixedSalary = $("#inputFixedSalarySummary").val();
+                var carBenefits = $("#inputCarBenefitsSummary").val();
+                var DailyAllowance = $("#inputDailyAllowanceSummary").val();
+
+                var result = "0";
+                var payNotRSK = parseFloat(fixedSalary);
+
+                if (carBenefits !== "" && $.isNumeric(carBenefits)) {
+                    payNotRSK = parseFloat(payNotRSK) - parseFloat(carBenefits);
+                }
+
+                if (DailyAllowance !== "" && $.isNumeric(DailyAllowance)) {
+                    payNotRSK = parseFloat(payNotRSK) - parseFloat(DailyAllowance);
+                }
+
+                result = parseFloat(Premium) * parseFloat(payNotRSK) * parseFloat(0.01);
+
+                $("#inputPensionPaymentPrivate").val(result);
+                $("#inputPensionPaymentPrivateMonth").val(result);
+
+                calculate_notRSK();
+            }
+            function calculate_notRSK() {
+                var Premium = $("#inputPensionPayment").val();
+                var privateFunds = $("#inputPensionPaymentPrivate").val();
+                var carBenefits = $("#inputCarBenefitsSummary").val();
+                var DailyAllowance = $("#inputDailyAllowanceSummary").val();
+
+                var result = "0";
+
+                result = parseFloat(carBenefits) + parseFloat(DailyAllowance) + parseFloat(Premium) + parseFloat(privateFunds);
+
+                $("#inputPaymentNotRSK").val(result);
+                $("#inputPaymentNotRSKMonth").val(result);
+
+                calculate_RSK();
+            }
+            function calculate_RSK() {
+                var PaymentNotRSK = $("#inputPaymentNotRSK").val();
+                var Payment = $("#inputFixedSalarySummary").val();
+
+                var result = "0";
+
+                result = parseFloat(Payment) - parseFloat(PaymentNotRSK);
+
+                $("#inputPaymentRSK").val(result);
+                $("#inputPaymentRSKMonth").val(result);
+
+                calculate_taxrate();
+            }
+            function calculate_taxrate() {
+                var Payment = $("#inputPaymentRSK").val();
+
+                var taxStep = "927087";
+                var taxRate = "0.3694";
+                var taxRate2 = "0.4624";
+
+                var result = "0";
+
+                if (parseFloat(Payment) <= parseFloat(taxStep))
+                    result = parseFloat(Payment) * parseFloat(taxRate);
+                else
+                    result = ((parseFloat(Payment) - parseFloat(taxStep)) * parseFloat(taxRate2)) + (parseFloat(taxStep) * parseFloat(taxRate));
+
+                $("#inputPaymentTaxRates").val(result);
+                $("#inputPaymentTaxRatesMonth").val(result);
+
+                calculate_TaxRatesC();
+            }
+            function calculate_TaxRatesC() {
+                var PaymentTaxRates = $("#inputPaymentTaxRates").val();
+                var personalDiscount = $("#inputPersonDiscount").val();
+
+                result = parseFloat(PaymentTaxRates) - parseFloat(personalDiscount);
+
+                $("#inputPaymentTaxRatesCMonth").val(result);
+
+                calculate_MembershipFee();
+
+            }
+            function calculate_MembershipFee() {
+                var FixedSalarySummary = $("#inputFixedSalarySummary").val();
+                var MembershipFee = $("#MembershipFee").val();
+
+                result = parseFloat(FixedSalarySummary) * parseFloat(MembershipFee) * parseFloat("0.01");
+
+                $("#inputMembershipFee").val(result);
+                $("#inputMembershipFeeMonth").val(result);
+
+            }
+            $("#numberShiftWork,#inputShiftWork").keyup(function (e) {
+
+                var q = $("#numberShiftWork").val();
+                var p = $("#inputShiftWork").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputShiftWorkSummary").val(result);
+
+                calculate_summary();
+
+            });
+            $("#numberShiftWork").change(function (e) {
+
+                var q = $("#numberShiftWork").val();
+                var p = $("#inputShiftWork").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputShiftWorkSummary").val(result);
+
+                calculate_summary();
+
+            });
+            $("#numberCarBenefits,#inputCarBenefits").keyup(function (e) {
+
+                var q = $("#numberCarBenefits").val();
+                var p = $("#inputCarBenefits").val();
+                var result = "";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputCarBenefitsSummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#numberCarBenefits").change(function (e) {
+
+                var q = $("#numberCarBenefits").val();
+                var p = $("#inputCarBenefits").val();
+                var result = "";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputCarBenefitsSummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#numberDailyAllowance,#inputDailyAllowance").keyup(function (e) {
+
+                var q = $("#numberDailyAllowance").val();
+                var p = $("#inputDailyAllowance").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputDailyAllowanceSummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#numberDailyAllowance").change(function (e) {
+
+                var q = $("#numberDailyAllowance").val();
+                var p = $("#inputDailyAllowance").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                    result = parseFloat(q) * parseFloat(p);
+                }
+                $("#inputDailyAllowanceSummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#numberFixedSalary,#employeeSettings_fixedSalary").keyup(function (e) {
+
+                var q = $("#Launalidur_heiti").val();
+                var p = $("#numberFixedSalary").val();
+                var t = $("#employeeSettings_fixedSalary").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && t !== "" && $.isNumeric(q) && $.isNumeric(p) && $.isNumeric(t)) {
+                    result = parseFloat(p) * parseFloat(q) * parseFloat(t) * parseFloat(0.01);
+                }
+                $("#inputFixedSalarySummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#numberFixedSalary").change(function (e) {
+
+                var q = $("#Launalidur_heiti").val();
+                var p = $("#numberFixedSalary").val();
+                var t = $("#employeeSettings_fixedSalary").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && t !== "" && $.isNumeric(q) && $.isNumeric(p) && $.isNumeric(t)) {
+                    result = parseFloat(p) * parseFloat(q) * parseFloat(t) * parseFloat(0.01);
+                }
+                $("#inputFixedSalarySummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#Launalidur_heiti").change(function (e) {
+
+                var q = $("#Launalidur_heiti").val();
+                var p = $("#numberFixedSalary").val();
+                var t = $("#employeeSettings_fixedSalary").val();
+                var result = "0";
+
+                if (q !== "" && p !== "" && t !== "" && $.isNumeric(q) && $.isNumeric(p) && $.isNumeric(t)) {
+                    result = parseFloat(p) * parseFloat(q) * parseFloat(t) * parseFloat(0.01);
+                }
+                $("#inputFixedSalarySummary").val(result);
+
+                calculate_summary();
+                calculate_pension();
+
+            });
+            $("#otherPayments1").change(function (e) {
+
+                var p = $("#otherPayments1").val();
+
+                result = parseFloat(p);
+                var result = "0";
+
+                $("#inputOtherPaymentsList1").val(p);
+                $("#inputOtherPaymentsList1Summary").val(p);
+
+                calculate_summary();
+
+            });
+            $("#otherPayments2").change(function (e) {
+
+                var p = $("#otherPayments2").val();
+
+                result = parseFloat(p);
+                var result = "0";
+
+                $("#inputOtherPaymentsList2").val(p);
+                $("#inputOtherPaymentsList2Summary").val(p);
+
+                calculate_summary();
+
+            });
+            $("#inputOtherPaymentsList1").keyup(function (e) {
+
+                var q = $("#inputOtherPaymentsList1").val();
+                var result = "0";
+
+                if (q !== "" && $.isNumeric(q) ) {
+                    result = parseFloat(q);
+                }
+                $("#inputOtherPaymentsList1Summary").val(result);
+
+                calculate_summary();
+
+            });
+            $("#inputOtherPaymentsList2").keyup(function (e) {
+
+                var q = $("#inputOtherPaymentsList2").val();
+                var result = "0";
+
+                if (q !== "" && $.isNumeric(q)) {
+                    result = parseFloat(q);
+                }
+                $("#inputOtherPaymentsList2Summary").val(result);
+
+                calculate_summary();
+
+            });
+
+        });
+    </script>
+    <style type="text/css">
+
+        .asd {
+            background: rgba(0,0,0,0);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>Launaseðill</h3>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">Launagreiðandi</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row row-m-t">
+                    <div class="col-sm-3">
+                        <label>@Html.DisplayFor(model => model.Company.name)</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>@Html.DisplayFor(model => model.Company.postalCode)</label>
+                        <label>@Html.DisplayFor(model => model.Company.city)</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Rafrænn launaseðill</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <input id="Button1" type="button" value="Endurhlaða stillingar" class="btn btn-xs ol-xs-12 button-wrapper" />
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <input id="Button1" type="button" value="Endurhlaða stillingar" class="btn btn-xs ol-xs-12 button-wrapper" />
-                </div>
-            </div>
-            <div class="row row-m-t">
-                <div class="col-sm-3">
-                    @Html.Label("FyrirtaekiHeimili", "Reykjavíkurvegur 38")
-                </div>
-                <div class="col-sm-3">
-                    @Html.Label("FyrirtaekiSimi", "S: 5550873")
-                </div>
-                <div class="col-sm-3">
-                    <input id="Button3" type="button" value="Prenta" class="btn btn-xs ol-xs-12 button-wrapper" />
-                </div>
-                <div class="col-sm-3">
-                    <input id="Button2" type="button" value="Vista" class="btn btn-xs ol-xs-12 button-wrapper" />
+                <div class="row row-m-t">
+                    <div class="col-sm-3">
+                        <label>@Html.DisplayFor(model => model.Company.home)</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>@Html.DisplayFor(model => model.Company.phoneNumber)</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input id="Button3" type="button" value="Prenta" class="btn btn-xs ol-xs-12 button-wrapper" />
+                    </div>
+                    <div class="col-sm-3">
+                        <input id="Button2" type="button" value="Vista" class="btn btn-xs ol-xs-12 button-wrapper" />
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Launþegi</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row row-m-t">
+                    <div class="col-sm-3">
+                        @{Html.BeginForm("Index", "Default", FormMethod.Get); }
+                        @Html.DropDownListFor(model => model.Employee.name, Model.Employee.employeeList, "Veldu launþega", new { onchange = "this.form.submit();" })
+                        @{Html.EndForm(); }
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Tímabil frá :</label><input id="meeting" type="date" value="2018-08-01" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Tímabil til :</label><input id="meeting" type="date" value="2018-08-31" />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-3">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="form-check-label" for="exampleCheck1">Nafn</label>
+                        </div>
+                        <div>
+                            <label>@Html.DisplayFor(model => model.Employee.name)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <label class="form-check-label" for="exampleCheck1">Kennitala</label>
+                        </div>
+                        <div>
+                            @if (Model.Employee.personalId != null)
+                            {
+                                <label>@Html.DisplayFor(model => model.Employee.personalId)</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="form-check-label" for="exampleCheck1">Heimili</label>
+                        </div>
+                        <div>
+                            <label>@Html.DisplayFor(model => model.Employee.address1)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="form-check-label" for="exampleCheck1">Póstnúmer</label>
+                        </div>
+                        <div>
+                            <label>@Html.DisplayFor(model => model.Employee.postalCode)</label>
+                            <label>@Html.DisplayFor(model => model.Employee.city)</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-</div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Laun</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Einingar</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Taxti</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Mánuður</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Frá áramótum</label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Föst laun</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="numberFixedSalary" type="number" value="1" min="0" max="100" />
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.Launalidur.heiti, Model.Launalidur.launalidurList)
+                        @Html.HiddenFor(model => model.employeeSettings.fixedSalary)
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputFixedSalarySummary" value="@Html.DisplayFor(model => model.employeeSettings.fixedSalary)" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputFixedSalaryYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Yfirvinna</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="overtime" type="number" value="0" min="0" max="100" />
+                    </div>
+                    <div class="col-sm-2" id="overtimediv">
+                        <input class="form-control input-sm" id="overtimetaxti" type="text" value=@Html.DisplayFor(model => model.employeeSettings.overtime)>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="overtimePay" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="overtimePayYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Vaktaálag</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="numberShiftWork" type="number" value="0" min="0" max="100" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputShiftWork" type="text" value=@Html.DisplayFor(model => model.employeeSettings.shiftWork)>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputShiftWorkSummary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputShiftWorkYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Ökutækjastyrkur</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="numberCarBenefits" type="number" value="0" min="0" max="100" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputCarBenefits" type="text" value=@Html.DisplayFor(model => model.employeeSettings.carBenefits)>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputCarBenefitsSummary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputCarBenefitsYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Dagpeningar</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="numberDailyAllowance" type="number" value="0" min="0" max="100" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputDailyAllowance" type="text" value=@Html.DisplayFor(model => model.employeeSettings.dailyallowance)>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputDailyAllowanceSummary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputDailyAllowanceYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Aðrar greiðslur</label>
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.otherPayments1, Model.OtherPaymentsList, "Veldu greiðslu")
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputOtherPaymentsList1" type="text" value=0>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherPaymentsList1Summary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherPaymentsList1Year" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Aðrar greiðslur</label>
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(model => model.otherPayments2, Model.OtherPaymentsList, "Veldu greiðslu")
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputOtherPaymentsList2" type="text" value="0">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherPaymentsList2Summary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherPaymentsList2Year" value="0" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Útreikningur staðgreiðslu</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Taxti</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Mánuður</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Frá áramótum</label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">B*Heildarlaun</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputSalaryAll" value="@Html.DisplayFor(model => model.employeeSettings.fixedSalary)" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputSalarySummaryMonth" value="@Html.DisplayFor(model => model.employeeSettings.fixedSalary)" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputSalarySummaryYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Greiðslur og hlunnindi utan staðgr.</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentNotRSK" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentNotRSKMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentNotRSKYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Staðgreiðsluskyld laun</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentRSK" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentRSKMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentRSKYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Staðgreiðsluskyld laun x Skatthlutfall</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRates" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Persónuafsláttur</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPersonDiscount" value="56447" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPersonDiscountMonth" value="56447" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPersonDiscountYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Ónýttur persónuafsláttur frá fyrri mánuði</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputUnusedPersonDiscount" type="text" value="0">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputUnusedPersonDiscountMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputUnusedPersonDiscountYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Ónýttur persónuafsláttur fl. til næsta mánaðar</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputUnusedPersonDiscountMoved" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputUnusedPersonDiscountMovedMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputUnusedPersonDiscountMovedYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">C*STAÐGREIÐSLA</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Flutt í reit D</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesCMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesCYear" value="0" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Frádráttur frá launum</div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Taxti</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Mánuður</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Frá áramótum</label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">D*Staðgreiðsla</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesD" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesDMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPaymentTaxRatesDYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Lífeyrissjóðsiðngjald</label>
+                        <input type="hidden" class="asd" id="inputPremium" value=@Html.DisplayFor(model => model.employeeFees.premium)/>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPayment" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPaymentMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPaymentYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Lífeyrissjóðsiðngjald, viðbótarframlag</label>
+                        <input type="hidden" class="asd" id="inputprivateProperty" value=@Html.DisplayFor(model => model.employeeFees.privateProperty) />
+
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPaymentPrivate" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPaymentPrivateMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPensionPaymentPrivateYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Félagsgjald</label>
+                        <input type="hidden" class="asd" id="MembershipFee" value=@Html.DisplayFor(model => model.employeeFees.privateProperty) />
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputMembershipFee" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputMembershipFeeMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputMembershipFeeYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">Annar frádráttur</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm" id="inputsm" type="text" value="0">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherWithdrawMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputOtherWithdrawYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">E*FRÁDRÁTTUR ALLS</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                       <label>Flutt í reit F</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputWithdrawSummaryMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputWithdrawSummaryYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">A*HEILDARLAUN</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalSalary" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalSalaryMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalSalaryYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">F*FRÁDRÁTTUR ALLS</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalWithdraw" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalWithdrawMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputTotalWithdrawYear" value="0" disabled />
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="exampleCheck1">ÚTBORGUÐ LAUN</label>
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPayout" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPayoutMonth" value="0" disabled />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="asd" id="inputPayoutYear" value="0" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
 
 

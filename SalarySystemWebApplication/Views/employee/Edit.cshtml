@@ -1,0 +1,84 @@
+﻿@model SalarySystemWebApplication.Models.employeeModel
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "taxOfficeform" }))
+{
+    <h3>Breyta launþega</h3>
+    <hr />
+    <div class="row row-m-t">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-sm-3">
+            <label for="personalId">Kennitala:</label>
+            @Html.EditorFor(model => model.personalId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.personalId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="personalId">Nafn:</label>
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="address1">Heimili:</label>
+            @Html.EditorFor(model => model.address1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.address1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-3">
+            <label for="address1">Póstnúmer:</label>
+            @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="city">Sveitafélag:</label>
+            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="account">Launareikningur:</label>
+            @Html.EditorFor(model => model.salaryAccount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.salaryAccount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-3">
+            <label for="account2">Orlofsreikningur:</label>
+            @Html.EditorFor(model => model.vacationAccount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.vacationAccount, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="address1">Sími:</label>
+            @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-3">
+            <label for="address1">Netfang:</label>
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-3">
+            <label for="idGroup">Hópur:</label>
+            @Html.DropDownListFor(model => model.idGroup, Model.group.groupList, new { @class = "form-control" })
+
+        </div>
+        <div class="col-sm-3">
+            <label for="IdJobCatagory">Launaflokkur:</label>
+            @Html.DropDownListFor(model => model.IdJobCatagory, Model.jobCatagory.jobCatagoryList, new { @class = "form-control" })
+            @Html.HiddenFor(model => model.status)
+
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-10">&emsp;</label>
+            <input type="submit" value="Vista" class="btn btn-default" />
+            <input type="button" value="Hreinsa" class="btn btn-default" onclick='taxOfficeform.reset();return false;' />
+        </div>
+    </div>
+}

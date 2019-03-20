@@ -1,0 +1,190 @@
+﻿@model SalarySystemWebApplication.Models.employeeModel
+
+<h3>Launagreiðslur</h3>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">Velja launagreiðslu</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-4">
+                    <label for="employeeList">Launþegi</label>
+                    @{Html.BeginForm("Index", "EmployeePayment", FormMethod.Get); }
+                    @Html.DropDownListFor(model => Model.name, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @{Html.EndForm(); }
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Tími frá</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Tími til</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <input id="meeting" type="date" value="2018-08-01" />
+                </div>
+                <div class="col-sm-3">
+                    <input id="meeting" type="date" value="2018-08-31" />
+                </div>
+            </div>
+            <p></p>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Laun</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Eftirvinna(+)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Vaktaálag(+)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Orlofsuppbót(+)</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Ökutækjastyrkur(+)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Aðrar greiðslur(+)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Dagpeningar(+)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Persónuáfsláttur(+)</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Staðgreiðsla skatta(-)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Iðgjöld(-)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Félagsgjöld(-)</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Útborguð laun</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label><b>0,0</b></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Launagreiðslur</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    <input type="submit" value="Senda í greiðsluskrá" class="btn btn-default" />
+                </div>
+            </div>
+            <p></p>
+            <font size="2">
+                <table class="table">
+
+                    <tr>
+                        <th>
+                            <label>Dags.</label>
+                        </th>
+                        <th>
+                            <label>Kennitala</label>
+                        </th>
+                        <th>
+                            <label>Nafn</label>
+                        </th>
+                        <th>
+                            <label>Laun</label>
+                        </th>
+                        <th>
+                            <label>Aðrar greiðslur</label>
+                        </th>
+                        <th>
+                            <label>Staðgreiðsla</label>
+                        </th>
+                        <th>
+                            <label>Iðgjöld</label>
+                        </th>
+                        <th>
+                            <label>Félagsgjöld</label>
+                        </th>
+                        <th>
+                            <label>Útborgað.</label>
+                        </th>
+                        <th>
+                            <label>Ástand</label>
+                        </th>
+                        <th>
+                            <label>Eyða</label>
+                        </th>
+                        <th>
+                            <label>Velja</label>
+                        </th>
+                        <th></th>
+                    </tr>
+
+                </table>
+            </font>
+
+
+        </div>
+    </div>
+</div>

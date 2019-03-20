@@ -1,0 +1,218 @@
+﻿@model SalarySystemWebApplication.Models.unionModel
+
+
+
+    <h3>Stéttafélög</h3>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">Skrá stéttafélag</div>
+        
+
+        <div class="panel-body">
+            <div class="container">
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "unionform" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            <label>Kennitala</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nafn</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Heimili</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.personalId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.personalId, "", new { @class = "text-danger"})
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            <label>Póstnúmer</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Sveitafélag</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Sími</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            <label>Félagsgjald(%)</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Orlofssjóður(%)</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Starfsmenntun(%)</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.membershipFee, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.membershipFee, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.vacationFund, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.vacationFund, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.training, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.training, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            <label>Sjúkrasjóður(%)</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Endurhæfing</label>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.nationalHealth, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.nationalHealth, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.EditorFor(model => model.rehabilitation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.rehabilitation, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <P></P>
+                    <div class="row row-m-t">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <input type="submit" value="Vista" class="btn btn-default" />
+                            <input type="button" value="Hreinsa" class="btn btn-default" onclick='unionform.reset();return false;' />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Skráð stéttafélög</div>
+    <div class="panel-body">
+        <div class="container">
+            <font size="2">
+                <table class="table">
+
+                    <tr>
+                        <th>
+                            <label>Kennitala</label>
+                        </th>
+                        <th>
+                            <label>Nafn</label>
+                        </th>
+                        <th>
+                            <label>Heimili</label>
+                        </th>
+                        <th>
+                            <label>Póstnúmer</label>
+                        </th>
+                        <th>
+                            <label>Póstfang</label>
+                        </th>
+                        <th>
+                            <label>Félagsgj.</label>
+                        </th>
+                        <th>
+                            <label>Orlof</label>
+                        </th>
+                        <th>
+                            <label>Sjúkras.</label>
+                        </th>
+                        <th>
+                            <label>Breyta</label>
+                        </th>
+                        <th>
+                            <label>Eyða</label>
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.unionList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.personalId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.postalCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.city)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.membershipFee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.vacationFund)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nationalHealth)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Breyta", "Edit", new { id = item.Id })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Eyða", "Delete", new { id = item.Id }, new { onclick = "return confirm('Ertu viss um að þú viljir eyða þessu stéttafélagi?');" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </font>
+        </div>
+    </div>
+</div>
+

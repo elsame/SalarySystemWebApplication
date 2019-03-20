@@ -1,0 +1,85 @@
+﻿@model SalarySystemWebApplication.Models.taxOfficeModel
+<h3>Skattaupplýsingar</h3>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">Breyta skattaumdæmi</div>
+    <div class="panel-body">
+        <div class="container">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "taxOfficeform" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.AntiForgeryToken()
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        <label>Kennitala</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Nafn</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Heimili</label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.personalId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.personalId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        <label>Póstnúmer</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Póstfang</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Sími</label>
+                    </div>
+                </div>
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <P></P>
+                <div class="row row-m-t">
+                    <div class="col-sm-4">
+
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        <input type="submit" value="Vista" class="btn btn-default" />
+                        <input type="button" value="Hreinsa" class="btn btn-default" onclick='taxOfficeform.reset();return false;' />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

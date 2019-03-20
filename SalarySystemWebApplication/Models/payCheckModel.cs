@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SalarySystemWebApplication.Models
 {
-    public class payCheck
+    public class payCheckModel
     {
         public int Id { get; set; }
         public int IdLaunthegi { get; set; }

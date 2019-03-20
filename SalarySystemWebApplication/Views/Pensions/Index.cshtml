@@ -1,0 +1,188 @@
+﻿@model SalarySystemWebApplication.Models.employeeModel
+<h3>RSK Skilagrein</h3>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">Skilagrein til RSK</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-4">
+                    <label for="employeeList">Launþegar</label>
+                    @{Html.BeginForm("Index", "RSK", FormMethod.Get); }
+                    @Html.DropDownListFor(model => Model.name, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @{Html.EndForm(); }
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-4">
+                    <label for="employeeList">Lífeyrissjóður</label>
+                    @{Html.BeginForm("Index", "RSK", FormMethod.Get); }
+                    @Html.DropDownListFor(model => Model.name, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @{Html.EndForm(); }
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-2">
+                    <label>Tími frá</label>
+                </div>
+                <div class="col-sm-2">
+                    <label>Tími til</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-2">
+                    <input id="meeting" type="date" value="2018-08-01" />
+                </div>
+                <div class="col-sm-2">
+                    <input id="meeting" type="date" value="2018-08-31" />
+                </div>
+            </div>
+            <p></p>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Iðgjald</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Félagsgjald</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Mótframlag</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Orlofssjóður</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Sjúkrasjóður</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Starfsmenntun</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>Séreign</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Mótfram. sér.</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Upphæð samt.</label>
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+                <div class="col-sm-3">
+                    <label>0,0</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Sundurliðun skilagreinar</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    &emsp;
+                </div>
+                <div class="col-sm-3">
+                    <input type="submit" value="Setja í skrá" class="btn btn-default" />
+                </div>
+            </div>
+            <p></p>
+            <font size="2">
+                <table class="table">
+
+                    <tr>
+                        <th>
+                            <label>Dags.</label>
+                        </th>
+                        <th>
+                            <label>Kennitala</label>
+                        </th>
+                        <th>
+                            <label>Nafn</label>
+                        </th>
+                        <th>
+                            <label>Iðgjald</label>
+                        </th>
+                        <th>
+                            <label>Séreign</label>
+                        </th>
+                        <th>
+                            <label>Félagsgj.</label>
+                        </th>
+                        <th>
+                            <label>Orlofssjóð.</label>
+                        </th>
+                        <th>
+                            <label>Sjúkrasjóð.</label>
+                        </th>
+                        <th>
+                            <label>Starfsmennt.</label>
+                        </th>
+                        <th>
+                            <label>Upph. samt.</label>
+                        </th>
+                        <th>
+                            <label>Mótfram.</label>
+                        </th>
+                        <th>
+                            <label>Mótfram. sér.</label>
+                        </th>
+                        <th>
+                            <label>Ástand</label>
+                        </th>
+                        <th>
+                            <label>Eyða</label>
+                        </th>
+                        <th>
+                            <label>Velja</label>
+                        </th>
+                        <th></th>
+                    </tr>
+
+                </table>
+            </font>
+
+
+        </div>
+    </div>
+</div>

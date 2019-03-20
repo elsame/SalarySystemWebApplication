@@ -1,0 +1,1303 @@
+﻿@model SalarySystemWebApplication.Models.employeeModel
+<h3>Ársyfirlit launagreiðslna</h3>
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">Ársyfirlit launþega</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row row-m-t">
+                <div class="col-sm-4">
+                    <label for="employeeList">Launþegi</label>
+                </div>
+                <div class="col-sm-4">
+                    <label for="taxRegion">Ár</label>
+                </div>
+                <div class="col-sm-2">
+                </div>
+            </div>
+            <div class="row row-m-t">
+                <div class="col-sm-4">
+                    @{Html.BeginForm("Index", "RSK", FormMethod.Get); }
+                    @Html.DropDownListFor(model => Model.name, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @{Html.EndForm(); }
+                </div>
+                <div class="col-sm-4">
+                    @{Html.BeginForm("Index", "RSK", FormMethod.Get); }
+                    @Html.DropDownListFor(model => Model.name, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+                    @{Html.EndForm(); }
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" value="Launamiðaskrá" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-m-t">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Janúar</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+     </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Febrúar</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Mars</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Apríl</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row-m-t">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Maí</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Júní</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Júlí</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Ágúst</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row-m-t">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">September</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Október</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Nóvember</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Desember</div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Yfirvinna</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Vaktaálag</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Ökutækjastyrkur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Aðrar greiðslur</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Skattskild laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Staðgreiðsla RSK</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Iðgjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Önnur gjöld</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Útborguð laun</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                    <div class="row row-m-t">
+                        <div class="col-sm-8">
+                            <label>Fluttur persónuafsl.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>0,0</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,38 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Launaseðill", "Index", "Default")</li>
+                <li>@Html.ActionLink("Launþegi", "Index", "employee")</li>
+                <li>@Html.ActionLink("Stillingar launþega", "Index", "EmployeeSettings")</li>
+                <li>@Html.ActionLink("Launagreiðslur", "Index", "EmployeePayment")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skilagreinar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("RSK", "Index", "RSK")</li>
+                        <li>@Html.ActionLink("Lífeyrir", "Index", "Pensions")</li>
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("Stillingar fyrirtækis", "Index", "CompanySettings")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Aðrar stillingar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Yfirlit launagreiðslna", "Index", "PaymentOverview")</li>
+                        <li>@Html.ActionLink("Skattaupplýsingar", "Index", "TaxInformation")</li>
+                        <li>@Html.ActionLink("Lífeyrissjóðaupplýsingar", "Index", "PensionsInfo")</li>
+                        <li>@Html.ActionLink("Stéttafélög", "Index", "Unions")</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

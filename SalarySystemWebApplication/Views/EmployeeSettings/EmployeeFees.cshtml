@@ -1,0 +1,110 @@
+﻿@model SalarySystemWebApplication.Models.employeeFeesModels
+<h3>Stillingar launþega</h3>
+<hr />
+<ul class="nav nav-tabs">
+    <li>@Html.ActionLink("Launþegi", "Index", "EmployeeSettings")</li>
+    <li class="active">@Html.ActionLink("Gjöld launþega", "EmployeeFees", "EmployeeSettings")</li>
+</ul>
+<p></p>
+<div class="row row-m-t">
+    <div class="col-sm-8">
+        <label for="employeeList">Launþegi</label>
+        @{Html.BeginForm("EmployeeFees", "EmployeeSettings", FormMethod.Get); }
+        @Html.DropDownListFor(model => Model.employeeModelId, Model.employeeList, "Enginn valinn", new { onchange = "this.form.submit();", @class = "form-control" })
+        @{Html.EndForm(); }
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.employeeModelId)
+
+    <div class="row row-m-t">
+        <div class="col-sm-8">
+            <label for="unionModelId">Stéttafélag</label>
+            @Html.DropDownListFor(model => Model.unionModelId, Model.unionList, "Ekkert valið", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.unionModelId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-4">
+            <label for="membershipFee">Félagsgjald</label>
+            @Html.EditorFor(model => model.membershipFee, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.membershipFee, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-10">
+            <label for="pensionFundModelId">Lífeyrissjóður</label>
+            @Html.DropDownListFor(model => Model.pensionFundModelId, Model.pensionFundList, "Ekkert valið", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.pensionFundModelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div class="col-sm-10">
+            <label for="privatePensionFundModelId">Lífeyrissjóður séreignar</label>
+            @Html.DropDownListFor(model => Model.privatePensionFundModelId, Model.pensionFundList, "Ekkert valið", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.privatePensionFundModelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div>
+            <div class="col-sm-2">
+                <label for="premium">Lífeyrissjóður(%)</label>
+                @Html.EditorFor(model => model.premium, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.premium, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                <label for="privateProperty">Séreignasjóður(%)</label>
+                @Html.EditorFor(model => model.privateProperty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.privateProperty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div>
+            <div class="col-sm-2">
+                <label for="vacationFund">Orlofssjóður(%)</label>
+                @Html.EditorFor(model => model.vacationFund, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.vacationFund, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                <label for="nationalHealth">Sjúkrasjóður(%)</label>
+                @Html.EditorFor(model => model.nationalHealth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nationalHealth, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                <label for="training">Starfsmenntun(%)</label>
+                @Html.EditorFor(model => model.training, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.training, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row row-m-t">
+        <div>
+            <div class="col-sm-2">
+                <label for="matchingFounds">Mótframlag lífeyris(%)</label>
+                @Html.EditorFor(model => model.matchingFounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.matchingFounds, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+                <label for="privateMatchingFounds">Mótframlag séreign(%)</label>
+                @Html.EditorFor(model => model.privateMatchingFounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.privateMatchingFounds, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <br />
+                <input type="submit" value="Vista" class="btn btn-default"
+                       @{ if (Model.employeeModelId == 0) { @: disabled="disabled"
+                       } } />
+            </div>
+        </div>
+    </div>
+
+}
